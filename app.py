@@ -11,7 +11,7 @@ def tab_config():
             "label": os.getenv("TAB1_LABEL", "Warehouse"),
             "url": os.getenv(
                 "TAB1_URL", 
-                "https://warehouse-reporting-263201611680.europe-west2.run.app/",
+                "https://warehouse-reporting-263201611680.europe-west2.run.app/"),
             },
         {
             "number": 2,
