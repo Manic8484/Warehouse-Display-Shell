@@ -19,7 +19,7 @@ Default behaviour
 Environment variables
 ---------------------
 TAB1_LABEL   Warehouse
-TAB1_URL     <warehouse reporting/map URL>
+TAB1_URL     https://warehouse-reporting-263201611680.europe-west2.run.app/
 
 TAB2_LABEL   Movements
 TAB2_URL     https://warehouse-movements-263201611680.europe-west2.run.app/board
