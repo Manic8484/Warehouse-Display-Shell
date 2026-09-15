@@ -28,8 +28,8 @@ def tab_config():
         },
         {
             "number": 4,
-            "label": os.getenv("TAB4_LABEL", "Tab 4"),
-            "url": os.getenv("TAB4_URL", ""),
+            "label": os.getenv("TAB4_LABEL", "High Profile Jobs"),
+            "url": os.getenv("TAB4_URL", "https://job-monitor-263201611680.europe-west2.run.app/board"),
         },
     ]
 
