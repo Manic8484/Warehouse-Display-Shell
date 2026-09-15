@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Warehouse Display</title>
+<style>
+:root{
+  --rail-width: 112px;
+  --tab-height: 200px;
+  --gap: 10px;
+  --bg: #111827;
+  --inactive: #263244;
+  --inactive-border: #3c4b61;
+  --active: #1976d2;
+  --active-border: #ffffff;
+  --text: #ffffff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:Arial,Helvetica,sans-serif}
+.shell{display:grid;grid-template-columns:1fr var(--rail-width);width:100vw;height:100vh}
+.content{position:relative;background:#fff;overflow:hidden}
+.app-frame{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff;display:none}
+.app-frame.active{display:block}
+.empty{
+  position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+  font-size:28px;font-weight:700;color:#6b7280;background:#f3f4f6
+}
+.empty.active{display:flex}
+.rail{
+  height:100vh;background:#111827;border-left:2px solid #0b1220;
+  display:flex;flex-direction:column;align-items:stretch;gap:var(--gap);
+  padding:10px 6px;overflow:hidden
+}
+.tab{
+  height:var(--tab-height);min-height:var(--tab-height);
+  border:2px solid var(--inactive-border);border-radius:10px;
+  background:var(--inactive);color:var(--text);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:8px;cursor:pointer;user-select:none;
+  font-size:18px;font-weight:700;line-height:1.15;
+  touch-action:manipulation;
+}
+.tab .num{
+  font-size:30px;line-height:1;margin-bottom:10px;font-weight:800;
+}
+.tab.active{
+  background:var(--active);border-color:var(--active-border);
+  box-shadow:-8px 0 0 var(--active), 0 0 0 2px rgba(255,255,255,.15) inset;
+}
+.tab.disabled{opacity:.35;cursor:default}
+@media (max-height: 900px){
+  :root{--tab-height: calc((100vh - 50px)/4)}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <main class="content" id="content">
+    {% for tab in tabs %}
+      {% if tab.url %}
+      <iframe
+        id="frame-{{ tab.number }}"
+        class="app-frame"
+        data-tab="{{ tab.number }}"
+        src="{{ tab.url }}"
+        allow="fullscreen"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      {% else %}
+      <div id="frame-{{ tab.number }}" class="empty" data-tab="{{ tab.number }}">
+        Tab {{ tab.number }} not assigned
+      </div>
+      {% endif %}
+    {% endfor %}
+  </main>
+
+  <aside class="rail" aria-label="Warehouse display tabs">
+    {% for tab in tabs %}
+      <button
+        type="button"
+        class="tab {% if not tab.url %}disabled{% endif %}"
+        data-tab="{{ tab.number }}"
+        {% if not tab.url %}disabled{% endif %}>
+        <span class="num">{{ tab.number }}</span>
+        <span>{{ tab.label }}</span>
+      </button>
+    {% endfor %}
+  </aside>
+</div>
+
+<script>
+(function(){
+  const tabs = [...document.querySelectorAll(".tab")];
+  const frames = [...document.querySelectorAll("[data-tab].app-frame, [data-tab].empty")];
+
+  function selectTab(number){
+    tabs.forEach(tab => tab.classList.toggle("active", tab.dataset.tab === String(number)));
+    frames.forEach(frame => frame.classList.toggle("active", frame.dataset.tab === String(number)));
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      if(!tab.disabled) selectTab(tab.dataset.tab);
+    });
+  });
+
+  // Deliberately do not remember the previous tab.
+  // Reload, browser restart or kiosk restart always returns to Tab 1.
+  selectTab(1);
+})();
+</script>
+</body>
+</html>
