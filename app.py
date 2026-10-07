@@ -23,8 +23,8 @@ def tab_config():
         },
         {
             "number": 3,
-            "label": os.getenv("TAB3_LABEL", "Tab 3"),
-            "url": os.getenv("TAB3_URL", ""),
+            "label": os.getenv("TAB3_LABEL", "Tasking"),
+            "url": os.getenv("TAB3_URL", "https://job-monitor-v2-263201611680.europe-west2.run.app/warehouse-tasks"),
         },
         {
             "number": 4,
