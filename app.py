@@ -11,25 +11,30 @@ def tab_config():
             "label": os.getenv("TAB1_LABEL", "Warehouse"),
             "url": os.getenv(
                 "TAB1_URL", 
-                "https://warehouse-reporting-263201611680.europe-west2.run.app/"),
+                "https://warehouse-reporting-v3-device-263201611680.europe-west2.run.app/"),
             },
         {
             "number": 2,
             "label": os.getenv("TAB2_LABEL", "Movements"),
             "url": os.getenv(
                 "TAB2_URL",
-                "https://warehouse-movements-263201611680.europe-west2.run.app/board",
+                "https://warehouse-movements-v3-device-263201611680.europe-west2.run.app/board",
             ),
         },
         {
             "number": 3,
             "label": os.getenv("TAB3_LABEL", "Tasking"),
-            "url": os.getenv("TAB3_URL", "https://job-monitor-v2-263201611680.europe-west2.run.app/warehouse-tasks"),
+            "url": os.getenv("TAB3_URL", "https://job-monitor-v3-device-263201611680.europe-west2.run.app/warehouse-tasks"),
         },
         {
             "number": 4,
             "label": os.getenv("TAB4_LABEL", "High Profile"),
-            "url": os.getenv("TAB4_URL", "https://job-monitor-263201611680.europe-west2.run.app/board"),
+            "url": os.getenv("TAB4_URL", "https://job-monitor-v3-device-263201611680.europe-west2.run.app/board"),
+        },
+         {
+            "number": 5,
+            "label": os.getenv("TAB5_LABEL", "Viewings"),
+            "url": os.getenv("TAB4_URL", "https://viewingstracker-v3-device-263201611680.europe-west2.run.app/"),
         },
     ]
 
