@@ -18,7 +18,7 @@ def tab_config():
             "label": os.getenv("TAB2_LABEL", "Movements"),
             "url": os.getenv(
                 "TAB2_URL",
-                "https://warehouse-movements-v3-device-263201611680.europe-west2.run.app/board",
+                "https://warehouse-movements-v3-device-263201611680.europe-west1.run.app/board",
             ),
         },
         {
@@ -34,7 +34,7 @@ def tab_config():
          {
             "number": 5,
             "label": os.getenv("TAB5_LABEL", "Viewings"),
-            "url": os.getenv("TAB4_URL", "https://viewingstracker-v3-device-263201611680.europe-west2.run.app/"),
+            "url": os.getenv("TAB4_URL", "https://viewingtracker-v3-device-263201611680.europe-west2.run.app/"),
         },
     ]
 
